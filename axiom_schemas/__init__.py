@@ -3,6 +3,11 @@ import os
 import sys
 import glob
 import pkgutil as pu
+import json
+from importlib.metadata import version
+
+# Version handle
+__version__ = version('axiom_schemas')
 
 
 def load_schema(filename):
@@ -14,7 +19,7 @@ def load_schema(filename):
     Returns:
         dict : Schema dictionary.
     """
-    return pu.get_data('axiom_schemas', f'schemas/{filename}').decode('utf-8')
+    return json.loads(pu.get_data('axiom_schemas', f'schemas/{filename}').decode('utf-8'))
 
 
 def list_schemas():
